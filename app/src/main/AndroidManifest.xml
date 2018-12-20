@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.dogu.myquizapplication">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity_Levels1" />
+        <activity android:name=".Activity_Levels2" />
+        <activity android:name=".Activity_Levels3" />
+        <activity android:name=".Activity_Levels4" />
+        <activity android:name=".Activity_LevelScore" />
+        <activity android:name=".Activity_Login" />
+        <activity android:name=".Activity_SignUp" />
+        <activity android:name=".Main2ActivitySec1" />
+        <activity android:name=".Main2ActivitySec2" />
+        <activity android:name=".Main2ActivitySec3" />
+        <activity android:name=".Main2ActivitySec4" />
+        <activity android:name=".ResultsActivity" />
+        <activity android:name=".WrongQuestion" />
+        <activity android:name=".LocalScoreBoard.ScoreActivity" />
+        <activity android:name=".LocalScoreBoard.ScoreLevel1" />
+        <activity android:name=".LeaderBoard.LeaderBoardAcSec1B" />
+        <activity android:name=".LocalScoreBoard.ScoreLevel2" />
+        <activity android:name=".LocalScoreBoard.ScoreLevel3" />
+        <activity android:name=".LocalScoreBoard.ScoreLevel4" />
+        <activity android:name=".LeaderBoard.LeaderBoardAcSec2B" />
+        <activity android:name=".LeaderBoard.LeaderBoardAcSec3B" />
+        <activity android:name=".LeaderBoard.LeaderBoardAcSec4B"></activity>
+    </application>
+
+</manifest>
