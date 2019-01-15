@@ -20,7 +20,7 @@ public class Activity_Login extends AppCompatActivity {
     EditText user_email;
     EditText user_pass;
     Button btn_signIn;
-    Button btn_forgotPass;
+
     Button btn_new_user;
 
     private String email;
@@ -32,9 +32,9 @@ public class Activity_Login extends AppCompatActivity {
         setContentView(R.layout.activity__login);
         user_email=(EditText)findViewById(R.id.user_email);
         user_pass=(EditText)findViewById(R.id.user_pass);
-        btn_signIn=(Button)findViewById(R.id.btn_SignIn);
-        btn_forgotPass=(Button)findViewById(R.id.btn_forgot_pass);
-        btn_new_user= (Button)findViewById(R.id.btn_new_user);
+        btn_signIn=(Button)findViewById(R.id.button1);
+
+        btn_new_user= (Button)findViewById(R.id.Sign_In);
         setAuthInstance();
         btn_signIn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -6,22 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical">
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/cardview">
+
 
         <LinearLayout
             android:clipToPadding="false"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:orientation="horizontal">
+
             <android.support.v7.widget.CardView
                 android:layout_width="160dp"
                 android:layout_height="160dp"
+                app:cardBackgroundColor="#96ffffff"
                 android:layout_margin="10dp">
 
                 <LinearLayout
@@ -39,6 +46,8 @@
 
                     <TextView
                         android:layout_width="wrap_content"
+                        android:fontFamily="@font/calibri"
+
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Hukuk"
@@ -54,6 +63,8 @@
             <android.support.v7.widget.CardView
                 android:layout_width="160dp"
                 android:layout_height="160dp"
+                app:cardBackgroundColor="#96ffffff"
+
                 android:layout_margin="10dp">
 
                 <LinearLayout
@@ -73,6 +84,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/calibri"
+
                         android:text="Mühendislik"
                         android:textStyle="bold" />
 
@@ -93,6 +106,8 @@
             <android.support.v7.widget.CardView
                 android:layout_width="160dp"
                 android:layout_height="160dp"
+                app:cardBackgroundColor="#96ffffff"
+
                 android:layout_margin="10dp">
 
                 <LinearLayout
@@ -111,6 +126,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/calibri"
+
                         android:layout_marginTop="10dp"
                         android:text="Eczalık"
                         android:textStyle="bold" />
@@ -125,6 +142,8 @@
             <android.support.v7.widget.CardView
                 android:layout_width="160dp"
                 android:layout_height="160dp"
+                app:cardBackgroundColor="#96ffffff"
+
                 android:layout_margin="10dp">
 
                 <LinearLayout
@@ -143,6 +162,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/calibri"
+
                         android:layout_marginTop="10dp"
                         android:text="İktisat"
                         android:textStyle="bold" />
@@ -166,10 +187,12 @@
             <android.support.v7.widget.CardView
                 android:layout_width="160dp"
                 android:layout_height="160dp"
+                app:cardBackgroundColor="#96ffffff"
+
                 android:layout_margin="10dp">
 
                 <LinearLayout
-                    android:id="@+id/score"
+                    android:id="@+id/scores"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -184,6 +207,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/calibri"
+
                         android:layout_marginTop="10dp"
                         android:text="Score"
                         android:textStyle="bold" />

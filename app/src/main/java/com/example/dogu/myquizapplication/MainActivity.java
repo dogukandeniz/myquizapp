@@ -41,13 +41,15 @@ public class MainActivity extends AppCompatActivity {
         eczacilik =(LinearLayout)findViewById(R.id.eczacilik);
         iktisat =(LinearLayout)findViewById(R.id.iktisat);
         muhendislik =(LinearLayout)findViewById(R.id.muhendislik);
-        sc=(LinearLayout)findViewById(R.id.score);
+        sc=(LinearLayout)findViewById(R.id.scores);
 
         hukuk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i= new Intent(getApplicationContext(),Activity_Levels1.class);
                 i.putExtra("table_name","questHukuk");
+                i.putExtra("user_id",mCurrentUserUid.toString());
+
 
                 startActivity(i);
                 overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(getApplicationContext(),Activity_Levels2.class);
                 i.putExtra("table_name","questEczacilik");
+                i.putExtra("user_id",mCurrentUserUid.toString());
+
                 startActivity(i);
                 overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
             }
@@ -68,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(getApplicationContext(),Activity_Levels3.class);
                 i.putExtra("table_name","questKisat");
+                i.putExtra("user_id",mCurrentUserUid.toString());
+
                 startActivity(i);
                 overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
             }
@@ -77,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(getApplicationContext(),Activity_Levels4.class);
                 i.putExtra("table_name","questMuhendislik");
+                i.putExtra("user_id",mCurrentUserUid.toString());
+
                 startActivity(i);
                 overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
             }
@@ -123,7 +131,8 @@ public class MainActivity extends AppCompatActivity {
     private void goToLogin() {
         Intent intent = new Intent(this, Activity_Login.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // LoginActivity is a New Task
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); // The old task when coming back to this activity should be cleared so we cannot come back to it.
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); // The old task when coming back to this activity should be cleared so we cannot come back to it.//GERİYE donüşü iptal
+        //ediyor.böylelikle login olmadan main activitye giriş yapamayacak durumda oluyor.
         startActivity(intent);
         overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
     }

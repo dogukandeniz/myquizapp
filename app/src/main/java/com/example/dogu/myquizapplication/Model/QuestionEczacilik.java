@@ -1,6 +1,6 @@
 package com.example.dogu.myquizapplication.Model;
 
-public class QuestionOS
+public class QuestionEczacilik
 {
     private int ID;
     private String QUESTION;
@@ -10,7 +10,7 @@ public class QuestionOS
     private String OPTD;
     private String ANSWER;
     private String CATEGORY;
-    public QuestionOS()
+    public QuestionEczacilik()
     {
         ID = 0;
         QUESTION = "";
@@ -20,8 +20,8 @@ public class QuestionOS
         OPTD = "";
         CATEGORY="";
     }
-    public QuestionOS(String qUESTION, String oPTA, String oPTB, String oPTC, String oPTD,
-                      String aNSWER,String cATEGORY) {
+    public QuestionEczacilik(String qUESTION, String oPTA, String oPTB, String oPTC, String oPTD,
+                             String aNSWER, String cATEGORY) {
 
         QUESTION = qUESTION;
         OPTA = oPTA;

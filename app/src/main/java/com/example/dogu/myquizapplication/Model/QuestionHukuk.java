@@ -1,6 +1,6 @@
 package com.example.dogu.myquizapplication.Model;
 
-public class QuestionCompFunda {
+public class QuestionHukuk {
     private int ID1;
     private String QUESTION1;
     private String OPTA1;
@@ -11,7 +11,7 @@ public class QuestionCompFunda {
     private String CATEGORY1;
 
 
-    public QuestionCompFunda() {
+    public QuestionHukuk() {
         ID1 = 0;
         QUESTION1 = "";
         OPTA1 = "";
@@ -21,8 +21,8 @@ public class QuestionCompFunda {
         CATEGORY1="";
     }
 
-    public QuestionCompFunda(String qUESTION1, String oPTA1, String oPTB1, String oPTC1, String oPTD1,
-                             String aNSWER1,String cATEGORY1) {
+    public QuestionHukuk(String qUESTION1, String oPTA1, String oPTB1, String oPTC1, String oPTD1,
+                         String aNSWER1, String cATEGORY1) {
 
         QUESTION1 = qUESTION1;
         OPTA1 = oPTA1;

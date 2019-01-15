@@ -32,21 +32,30 @@ public class Activity_LevelScore extends AppCompatActivity {
         setDatabaseInstance();
 
         yourScore = (LinearLayout)findViewById(R.id.inter);
-
-        int compMarksB=dbHelper.getScoreCompFundaB();
-        int hardwareMarksB=dbHelper.getScoreHardwareB();
-        int osMarksB=dbHelper.getScoreOSB();
-        int finalMarks=dbHelper.getScoreRandom();
-
         String userId = mAuth.getCurrentUser().getUid();
-        mUserRefDatabase.child("users").child(userId).child("compMarksB").setValue(compMarksB);
 
-        mUserRefDatabase.child("users").child(userId).child("hardwareMarksB").setValue(hardwareMarksB);
+        int compMarksB=dbHelper.getScoreHukuk(userId);
+        int hardwareMarksB=dbHelper.getScoreIktisat(userId);
+        int osMarksB=dbHelper.getScoreEczacilik(userId);
+        int finalMarks=dbHelper.getScoreMuhendislik(userId);
 
-        mUserRefDatabase.child("users").child(userId).child("osMarksB").setValue(osMarksB);
+        int countEczacilik=dbHelper.getEczacilikScoreCount(userId);
+        int countHukuk=dbHelper.getHukukScoreCount(userId);
+        int countIktisat=dbHelper.getIktisatScoreCount(userId);
+        int countMuhendislik=dbHelper.getMuhendislikScoreCount(userId);
 
-        mUserRefDatabase.child("users").child(userId).child("finalMarks").setValue(finalMarks);
 
+
+        //Firebase'ye baglanıp ilgili child yani dügümlere countlarını ve skorlarını giriyoruz.
+        mUserRefDatabase.child("users").child(userId).child("hukukB").setValue(compMarksB);
+        mUserRefDatabase.child("users").child(userId).child("countHukuk").setValue(countHukuk);
+
+        mUserRefDatabase.child("users").child(userId).child("eczacilikB").setValue(osMarksB);
+        mUserRefDatabase.child("users").child(userId).child("countEczacilik").setValue(countEczacilik);
+        mUserRefDatabase.child("users").child(userId).child("iktitasB").setValue(hardwareMarksB);
+        mUserRefDatabase.child("users").child(userId).child("countIktisat").setValue(countIktisat);
+        mUserRefDatabase.child("users").child(userId).child("muhendislikB").setValue(finalMarks);
+        mUserRefDatabase.child("users").child(userId).child("countMuhendislik").setValue(countMuhendislik);
 
         yourScore.setOnClickListener(new View.OnClickListener() {
             @Override

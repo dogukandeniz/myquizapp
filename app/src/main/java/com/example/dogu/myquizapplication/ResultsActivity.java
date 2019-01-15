@@ -6,8 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,7 +16,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ResultsActivity extends AppCompatActivity {
-    int score=0,scoreOS=0,scoreCOMPFUNDA=0,scoreHARDWARE=0,scoreRandom=0;
+    int score=0, scoreECZACILIK =0, scoreHUKUK =0, scoreIKTISAT =0, scoreMUHENDISLIK =0;
+
     DbHelper dbHelper = new DbHelper(this);
     Button btnWrongQstns;
 
@@ -28,7 +27,7 @@ public class ResultsActivity extends AppCompatActivity {
 
     private ImageView img;
     private TextView tvPerc;
-    String tableName="",catName="";
+    String tableName="",catName="",userID="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,33 +40,38 @@ public class ResultsActivity extends AppCompatActivity {
         TextView txtCorrectAns = (TextView) findViewById(R.id.txtCorrectAns);
         //get score
         final Bundle b = getIntent().getExtras();
-        if (b.containsKey("scoreOS")) {
-            scoreOS = b.getInt("scoreOS");
+        if (b.containsKey("scoreEczacilik")) {
+            scoreECZACILIK = b.getInt("scoreEczacilik");
+            userID = b.getString("user_id");
             tableName=b.getString("section");
             catName=b.getString("category");
-            dbHelper.insertScoreOS(scoreOS,tableName,catName);
-            score = scoreOS;
-        } else if (b.containsKey("scoreCompFunda")) {
-            scoreCOMPFUNDA = b.getInt("scoreCompFunda");
+            dbHelper.insertScoreEczacilik(scoreECZACILIK,tableName,catName,userID);
+            score = scoreECZACILIK;
+        } else if (b.containsKey("scoreHukuk")) {
+            userID = b.getString("user_id");
+            scoreHUKUK = b.getInt("scoreHukuk");
             tableName=b.getString("section");
             catName=b.getString("category");
-            dbHelper.insertScoreCompFunda(scoreCOMPFUNDA,tableName,catName);
-            score = scoreCOMPFUNDA;
-        } else if (b.containsKey("scoreHardware")) {
-            scoreHARDWARE = b.getInt("scoreHardware");
+            dbHelper.insertScoreHukuk(scoreHUKUK,tableName,catName,userID);
+            score = scoreHUKUK;
+        } else if (b.containsKey("scoreIktisat")) {
+            userID = b.getString("user_id");
+            scoreIKTISAT = b.getInt("scoreIktisat");
             tableName=b.getString("section");
             catName=b.getString("category");
-            dbHelper.insertScoreHardware(scoreHARDWARE,tableName,catName);
-            score = scoreHARDWARE;
-        } else if (b.containsKey("scoreRandom")){
-            scoreRandom = b.getInt("scoreRandom");
+            dbHelper.insertScoreIktisat(scoreIKTISAT,tableName,catName,userID);
+            score = scoreIKTISAT;
+        } else if (b.containsKey("scoreMuhendislik")){
+            userID = b.getString("user_id");
+            scoreMUHENDISLIK = b.getInt("scoreMuhendislik");
             tableName=b.getString("section");
-            dbHelper.insertScoreFinal(scoreRandom,tableName);
-            score = scoreRandom;
+            catName=b.getString("category");
+            dbHelper.insertScoreMuhendislik(scoreMUHENDISLIK,tableName,catName,userID);
+            score = scoreMUHENDISLIK;
 
         }
 
-        txtCorrectAns.setText("Total Answered : 30" + "\n" + "Correct Answered : " + score + "\nWrong Answered : " + (30 - score));
+        txtCorrectAns.setText("Total Answered : 10" + "\n" + "Correct Answered : " + score + "\nWrong Answered : " + (10 - score));
 
         wrongQuests = getIntent().getStringArrayListExtra("wrongQuestions");
         selectedAnswers = getIntent().getStringArrayListExtra("selectedAnswer");

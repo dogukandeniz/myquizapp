@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.example.dogu.myquizapplication.Adapter.LeaderBoardSec1B;
+import com.example.dogu.myquizapplication.Adapter.LeaderBoardSec3B;
 import com.example.dogu.myquizapplication.Model.UserModel;
 import com.example.dogu.myquizapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,7 +29,7 @@ public class LeaderBoardAcSec3B extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference mUserRefDatabase;
     private ChildEventListener mChildEventListener;
-    private LeaderBoardSec1B leaderBoardAdapterSec1;
+    private LeaderBoardSec3B leaderBoardAdapterSec1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class LeaderBoardAcSec3B extends AppCompatActivity {
     }
 
     private void setUserRecyclerView() {
-        leaderBoardAdapterSec1 = new LeaderBoardSec1B(this, new ArrayList<UserModel>());
+        leaderBoardAdapterSec1 = new LeaderBoardSec3B(this, new ArrayList<UserModel>());
         mUsersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mUsersRecyclerView.setHasFixedSize(true);
         //leaderBoardAdapterSec1.sortingScore();

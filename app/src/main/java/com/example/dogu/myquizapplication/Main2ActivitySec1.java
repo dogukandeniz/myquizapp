@@ -15,7 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.dogu.myquizapplication.DbHelper.DbHelper;
-import com.example.dogu.myquizapplication.Model.QuestionCompFunda;
+import com.example.dogu.myquizapplication.Model.QuestionHukuk;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +24,10 @@ import java.util.concurrent.TimeUnit;
 
 public class Main2ActivitySec1 extends AppCompatActivity {
 
-    List<QuestionCompFunda> quesList1;
+    List<QuestionHukuk> quesList1;
     public int score=0;
-    int ctr1=1;
-    QuestionCompFunda currentQ1;
+    int ctr1=0;
+    QuestionHukuk currentQ1;
     TextView txtQuestion1;
     RadioGroup grp;
     RadioButton rda1, rdb1, rdc1, rdd1;
@@ -41,7 +41,7 @@ public class Main2ActivitySec1 extends AppCompatActivity {
     int number;
     ProgressBar progressBar;
     int progress = 1;
-    String tableName="",catName="";
+    String tableName="",catName="",userID="";
     TextView qstnNo;
 
     @Override
@@ -56,6 +56,8 @@ public class Main2ActivitySec1 extends AppCompatActivity {
         if(b!=null){
             tableName=(String)b.get("table_name");
             catName=(String)b.get("level_name");
+            userID=(String)b.get("user_id");
+
             Log.d("Table Name",tableName);
             Log.d("Level Name",catName);
         }
@@ -65,23 +67,26 @@ public class Main2ActivitySec1 extends AppCompatActivity {
         final CounterClass timer = new CounterClass(180000, 1000);
         timer.start();
         quesList1=db.getAllQuestions1(tableName,catName);
-        for(int i=0;i<50;i++){
+
+        for(int i=0;i<10;i++){
             while(true){
-                int next = random1.nextInt(50);
+                int next = random1.nextInt(10);
                 if(!list.contains(next))
                 {
+                    Log.e("list[i]=",String.valueOf(next));
                     list.add(next);
                     break;
                 }
             }
         }
-        currentQ1=quesList1.get(list.get(0));
+
+        currentQ1=quesList1.get(list.get(ctr1));
         txtQuestion1=(TextView)findViewById(R.id.textView1);
         rda1=(RadioButton)findViewById(R.id.radio0);
         rdb1=(RadioButton)findViewById(R.id.radio1);
         rdc1=(RadioButton)findViewById(R.id.radio2);
         rdd1=(RadioButton)findViewById(R.id.radio3);
-        butNext1=(Button)findViewById(R.id.button1);
+        butNext1=(Button)findViewById(R.id.Sign_In);
         setQuestionView();
         grp = (RadioGroup) findViewById(R.id.radioGroup1);
         butNext1.setEnabled(false);
@@ -93,11 +98,17 @@ public class Main2ActivitySec1 extends AppCompatActivity {
             }
         });
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        progressBar.setMax(30);
+        progressBar.setMax(10);
         progressBar.setProgress(1);
         butNext1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DbHelper db = new DbHelper(getApplicationContext());
+
+                //Aynı soruların gelmesini engelleiyorum.geçerli sorunun id'sini DbHelper'da bulunan DeleteQuesitonHukuk()
+                //Methoduna gönderiyorum.böylece soru silinmiş oluyor.
+                db.deleteQuestionHukuk(currentQ1.getID1());
+
                 progress = progress+1;
                 progressBar.setProgress(progress);
                 RadioButton answer = (RadioButton) findViewById(grp.getCheckedRadioButtonId());
@@ -115,17 +126,20 @@ public class Main2ActivitySec1 extends AppCompatActivity {
                 }
                 grp.clearCheck();
                 butNext1.setEnabled(false);
-                if (ctr1 < 31) {
-                    if (ctr1 == 30) {
+                if (ctr1 < 10) {
+                    if (ctr1 == 10) {
                         butNext1.setText("End Test");
                     }
                     currentQ1 = quesList1.get(list.get(ctr1));
+
+
                     setQuestionView();
                 } else {
                     timer.onFinish();
                     timer.cancel();
                 }
             }
+
         });
 
     }
@@ -153,8 +167,10 @@ public class Main2ActivitySec1 extends AppCompatActivity {
     public void showResult(){
         Intent intent = new Intent(Main2ActivitySec1.this, ResultsActivity.class);
         Bundle b = new Bundle();
-        b.putInt("scoreCompFunda", score);//Your score
+        b.putInt("scoreHukuk", score);//Your score
         b.putString("section",tableName);//Your table name
+        b.putString("user_id",userID);//Your table name
+
         b.putString("category",catName);//Your category name
         intent.putStringArrayListExtra("wrongQuestions", wrongQuestListCompFunda);
         intent.putStringArrayListExtra("selectedAnswer", selectedAnsCompFunda);
@@ -165,16 +181,20 @@ public class Main2ActivitySec1 extends AppCompatActivity {
     }
 
     private void setQuestionView(){
+
         txtQuestion1.setText(currentQ1.getQUESTION1());
         rda1.setText(currentQ1.getOPTA1());
         rdb1.setText(currentQ1.getOPTB1());
         rdc1.setText(currentQ1.getOPTC1());
         rdd1.setText(currentQ1.getOPTD1());
         if(ctr1<10)
-            qstnNo.setText("0" + ctr1 + "/30");
+            qstnNo.setText("0" + ctr1 + "/10");
         else
-            qstnNo.setText("" + ctr1+ "/30");
+            qstnNo.setText("" + ctr1+ "/10");
         ctr1++;
+
+
+
     }
 
     @Override

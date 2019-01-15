@@ -31,6 +31,7 @@
                     android:id="@+id/qstnNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/calibri"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:singleLine="true"
@@ -48,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:fontFamily="@font/calibri"
                 android:text="05:00"
                 android:textColor="@color/colorAccent"
                 android:textSize="25dp"
@@ -69,11 +71,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Large Text"
+            android:fontFamily="@font/gotham"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/colorPrimaryDark" />
 
         <RadioGroup
             android:id="@+id/radioGroup1"
+            android:fontFamily="@font/calibri"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -83,6 +87,7 @@
             <RadioButton
                 android:id="@+id/radio0"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/calibri"
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:text="RadioButton"
@@ -91,6 +96,7 @@
             <RadioButton
                 android:id="@+id/radio1"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/calibri"
                 android:layout_height="wrap_content"
                 android:text="RadioButton"
                 android:textColor="@color/colorPrimaryDark" />
@@ -98,6 +104,7 @@
             <RadioButton
                 android:id="@+id/radio2"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/calibri"
                 android:layout_height="wrap_content"
                 android:text="RadioButton"
                 android:textColor="@color/colorPrimaryDark" />
@@ -106,6 +113,7 @@
                 android:id="@+id/radio3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/calibri"
                 android:text="RadioButton"
                 android:textColor="@color/colorPrimaryDark" />
 
@@ -114,17 +122,18 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/Sign_In"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="NEXT"
-        android:background="@color/deeppurple"
-        android:textColor="#fff"
-        android:fontFamily="sans-serif"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="15dp"/>
-
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="26dp"
+        android:background="@color/colorAccent"
+        android:fontFamily="@font/gotham"
+        android:text="NEXT"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="32dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

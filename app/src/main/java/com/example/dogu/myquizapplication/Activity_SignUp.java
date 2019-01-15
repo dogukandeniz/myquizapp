@@ -29,6 +29,7 @@ import java.util.Date;
 public class Activity_SignUp extends AppCompatActivity {
     EditText username;
     EditText uemail;
+    EditText ufacultyname;
     EditText upassword;
     EditText urepassword;
     Button btn_Sign_Up;
@@ -44,9 +45,10 @@ public class Activity_SignUp extends AppCompatActivity {
         setContentView(R.layout.activity__sign_up);
         username = (EditText) findViewById(R.id.edusername);
         uemail = (EditText) findViewById(R.id.edemail);
+        ufacultyname = (EditText) findViewById(R.id.edfakultyname);
         upassword = (EditText) findViewById(R.id.edpass);
         urepassword = (EditText) findViewById(R.id.edrepass);
-        btn_Sign_Up = (Button) findViewById(R.id.button1);
+        btn_Sign_Up = (Button) findViewById(R.id.Sign_In);
         btn_Already_Member = (Button) findViewById(R.id.btn_Already_Member);
         setAuthInstance();
         setDatabaseInstance();
@@ -84,11 +86,19 @@ public class Activity_SignUp extends AppCompatActivity {
         String email = uemail.getText().toString();
         String password = upassword.getText().toString();
         String reEnterPassword = urepassword.getText().toString();
+        String facultyname = ufacultyname.getText().toString();
         if (name.isEmpty()) {
             username.setError("enter user name");
             valid = false;
         } else {
             username.setError(null);
+        }
+
+        if (facultyname.isEmpty()) {
+            ufacultyname.setError("enter faculty name");
+            valid = false;
+        } else {
+            ufacultyname.setError(null);
         }
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
@@ -97,6 +107,7 @@ public class Activity_SignUp extends AppCompatActivity {
         } else {
             uemail.setError(null);
         }
+
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
             upassword.setError(" entered password must contain 7 alphanumeric characters minimum");
@@ -165,6 +176,10 @@ public class Activity_SignUp extends AppCompatActivity {
         return username.getText().toString().trim();
     }
 
+    private String getFakultyName() {
+        return ufacultyname.getText().toString().trim();
+    }
+
     private String getUserEmail() {
         return uemail.getText().toString().trim();
     }
@@ -173,22 +188,17 @@ public class Activity_SignUp extends AppCompatActivity {
         return upassword.getText().toString().trim();
     }
 
-    public int getCompMarksB(){
-        return 0;
-    }
-    public int getCompMarksI(){
-        return 0;
-    }
-    public int getCompMarksE(){
+    public int getHukukB(){
         return 0;
     }
 
-    private int getHardwareMarksB() { return 0; }
+
+    private int getEczacilikB() { return 0; }
 
 
-    private int getOSMarksB() { return 0; }
+    private int getIktitasB() { return 0; }
 
-    private int getFinalMarks()
+    private int getMuhendislikB()
     {
         return 0;
     }
@@ -239,15 +249,36 @@ public class Activity_SignUp extends AppCompatActivity {
     }
     private UserModel buildNewUser() {
         return new UserModel(
+                getFakultyName(),
                 getUserDisplayName(),
                 getUserEmail(),
                 new Date().getTime(),
-                getCompMarksB(),
+                getHukukB(),
 
-                getHardwareMarksB(),
+                getEczacilikB(),
 
-                getOSMarksB(),
-                getFinalMarks()
+                getIktitasB(),
+                getMuhendislikB(),
+                getCountEcz(),
+                getCountHuk(),
+                getCountIkt(),
+                getCountMuh()
         );
+    }
+
+    public int getCountEcz() {
+        return 0;
+    }
+
+    public int getCountHuk() {
+        return 0;
+    }
+
+    public int getCountIkt() {
+        return 0;
+    }
+
+    public int getCountMuh() {
+        return 0;
     }
 }

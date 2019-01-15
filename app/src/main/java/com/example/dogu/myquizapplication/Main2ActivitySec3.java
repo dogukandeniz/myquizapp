@@ -15,7 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.dogu.myquizapplication.DbHelper.DbHelper;
-import com.example.dogu.myquizapplication.Model.QuestionHardWare;
+import com.example.dogu.myquizapplication.Model.QuestionIktisat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +24,10 @@ import java.util.concurrent.TimeUnit;
 
 public class Main2ActivitySec3  extends AppCompatActivity {
 
-    List<QuestionHardWare> quesList1;
+    List<QuestionIktisat> quesList1;
     public int score=0;
-    int ctr1=1;
-    QuestionHardWare currentQ1;
+    int ctr1=0;
+    QuestionIktisat currentQ1;
     TextView txtQuestion1;
     RadioGroup grp;
     RadioButton rda1, rdb1, rdc1, rdd1;
@@ -41,7 +41,7 @@ public class Main2ActivitySec3  extends AppCompatActivity {
     int number;
     ProgressBar progressBar;
     int progress = 1;
-    String tableName="",catName="";
+    String tableName="",catName="",userID="";
     TextView qstnNo;
 
     @Override
@@ -58,16 +58,18 @@ public class Main2ActivitySec3  extends AppCompatActivity {
             catName=(String)b.get("level_name");
             Log.d("Table Name",tableName);
             Log.d("Level Name",catName);
+            userID=(String)b.get("user_id");
+
         }
         number=0;
-        DbHelper db= new DbHelper(this);
+       final DbHelper db= new DbHelper(this);
         textViewTime1 = (TextView)findViewById(R.id.textViewTime);
         final Main2ActivitySec3.CounterClass timer = new Main2ActivitySec3.CounterClass(180000, 1000);
         timer.start();
         quesList1=db.getAllQuestions2(tableName,catName);
-        for(int i=0;i<50;i++){
+        for(int i=0;i<10;i++){
             while(true){
-                int next = random1.nextInt(50);
+                int next = random1.nextInt(10);
                 if(!list.contains(next))
                 {
                     list.add(next);
@@ -75,13 +77,13 @@ public class Main2ActivitySec3  extends AppCompatActivity {
                 }
             }
         }
-        currentQ1=quesList1.get(list.get(0));
+        currentQ1=quesList1.get(list.get(ctr1));
         txtQuestion1=(TextView)findViewById(R.id.textView1);
         rda1=(RadioButton)findViewById(R.id.radio0);
         rdb1=(RadioButton)findViewById(R.id.radio1);
         rdc1=(RadioButton)findViewById(R.id.radio2);
         rdd1=(RadioButton)findViewById(R.id.radio3);
-        butNext1=(Button)findViewById(R.id.button1);
+        butNext1=(Button)findViewById(R.id.Sign_In);
         setQuestionView();
         grp = (RadioGroup) findViewById(R.id.radioGroup1);
         butNext1.setEnabled(false);
@@ -93,11 +95,13 @@ public class Main2ActivitySec3  extends AppCompatActivity {
             }
         });
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        progressBar.setMax(30);
+        progressBar.setMax(10);
         progressBar.setProgress(1);
         butNext1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DbHelper db = new DbHelper(getApplicationContext());
+                db.deleteQuestionIktisat(currentQ1.getID2());
                 progress = progress+1;
                 progressBar.setProgress(progress);
                 RadioButton answer = (RadioButton) findViewById(grp.getCheckedRadioButtonId());
@@ -115,11 +119,12 @@ public class Main2ActivitySec3  extends AppCompatActivity {
                 }
                 grp.clearCheck();
                 butNext1.setEnabled(false);
-                if (ctr1 < 31) {
-                    if (ctr1 == 30) {
+                if (ctr1 < 10) {
+                    if (ctr1 == 10) {
                         butNext1.setText("End Test");
                     }
                     currentQ1 = quesList1.get(list.get(ctr1));
+
                     setQuestionView();
                 } else {
                     timer.onFinish();
@@ -153,8 +158,10 @@ public class Main2ActivitySec3  extends AppCompatActivity {
     public void showResult(){
         Intent intent = new Intent(Main2ActivitySec3.this, ResultsActivity.class);
         Bundle b = new Bundle();
-        b.putInt("scoreHardWare", score);//Your score
+        b.putInt("scoreIktisat", score);//Your score
         b.putString("section",tableName);//Your table name
+        b.putString("user_id",userID);//Your table name
+
         b.putString("category",catName);//Your category name
         intent.putStringArrayListExtra("wrongQuestions", wrongQuestListCompFunda);
         intent.putStringArrayListExtra("selectedAnswer", selectedAnsCompFunda);
@@ -171,9 +178,9 @@ public class Main2ActivitySec3  extends AppCompatActivity {
         rdc1.setText(currentQ1.getOPTC2());
         rdd1.setText(currentQ1.getOPTD2());
         if(ctr1<10)
-            qstnNo.setText("0" + ctr1 + "/30");
+            qstnNo.setText("0" + ctr1 + "/10");
         else
-            qstnNo.setText("" + ctr1+ "/30");
+            qstnNo.setText("" + ctr1+ "/10");
         ctr1++;
     }
 

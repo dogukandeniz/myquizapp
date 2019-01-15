@@ -64,6 +64,14 @@ public class LeaderBoardSec1B extends RecyclerView.Adapter<LeaderBoardSec1B.View
             holder.getUserDisplayName().setText(fireUser.getKey());
             //compFundaScore
             holder.getUserCompMarks().setText("" + fireUser.getValue());
+
+            for(int i=0;i<mUsers.size();i++) {
+                if (fireUser.getKey().equals(mUsers.get(i).getDisplayName())){
+                    holder.getUserScoreCount().setText("" + mUsers.get(i).getCountHukuk());
+
+                }
+            }
+
         }
     }
 
@@ -73,7 +81,7 @@ public class LeaderBoardSec1B extends RecyclerView.Adapter<LeaderBoardSec1B.View
         for(int i=0;i<mUsers.size();i++) {
             UserModel fireUser = mUsers.get(i);
             //if(fireUser.getCompMarks()>0) {
-            getNameWithScore.put(fireUser.getDisplayName(), fireUser.getCompMarksB());
+            getNameWithScore.put(fireUser.getDisplayName(), fireUser.getHukukB());
             //}
         }
 
@@ -113,12 +121,14 @@ public class LeaderBoardSec1B extends RecyclerView.Adapter<LeaderBoardSec1B.View
 
         TextView mUserDisplayName;
         TextView scoreCompFunda;
+        TextView scoreCount;
         Context mContextViewHolder;
 
         public ViewHolderUsers(Context context, View itemView) {
             super(itemView);
-            mUserDisplayName = (TextView) itemView.findViewById(R.id.userName);
-            scoreCompFunda = (TextView) itemView.findViewById(R.id.score);
+            mUserDisplayName = (TextView) itemView.findViewById(R.id.userNames);
+            scoreCompFunda =  (TextView)itemView.findViewById(R.id.scores);
+            scoreCount = (TextView)itemView.findViewById(R.id.txtScoreCounts);
             mContextViewHolder = context;
         }
 
@@ -134,6 +144,9 @@ public class LeaderBoardSec1B extends RecyclerView.Adapter<LeaderBoardSec1B.View
 
         public TextView getUserCompMarks() {
             return scoreCompFunda;
+        }
+        public TextView getUserScoreCount() {
+            return scoreCount;
         }
     }
 }

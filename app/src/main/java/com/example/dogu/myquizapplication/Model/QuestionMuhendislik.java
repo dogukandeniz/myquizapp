@@ -1,6 +1,6 @@
 package com.example.dogu.myquizapplication.Model;
 
-public class QuestionRandom {
+public class QuestionMuhendislik {
 
     private int ID3;
     private String QUESTION3;
@@ -10,7 +10,18 @@ public class QuestionRandom {
     private String OPTD3;
     private String ANSWER3;
 
-    public QuestionRandom()
+    public String getCATEGORY3() {
+        return CATEGORY3;
+    }
+
+    public void setCATEGORY3(String CATEGORY3) {
+        this.CATEGORY3 = CATEGORY3;
+    }
+
+    private String CATEGORY3;
+
+
+    public QuestionMuhendislik()
     {
         ID3 = 0;
         QUESTION3 = "";
@@ -18,9 +29,10 @@ public class QuestionRandom {
         OPTB3 = "";
         OPTC3 = "";
         OPTD3 = "";
+        CATEGORY3="";
     }
-    public QuestionRandom(String qUESTION, String oPTA, String oPTB, String oPTC, String oPTD,
-                          String aNSWER) {
+    public QuestionMuhendislik(String qUESTION, String oPTA, String oPTB, String oPTC, String oPTD,
+                               String aNSWER,String cATEGORY) {
 
         QUESTION3 = qUESTION;
         OPTA3 = oPTA;
@@ -28,6 +40,8 @@ public class QuestionRandom {
         OPTC3 = oPTC;
         OPTD3 = oPTD;
         ANSWER3 = aNSWER;
+        CATEGORY3=cATEGORY;
+
     }
 
     public int getID3() {
@@ -85,6 +99,8 @@ public class QuestionRandom {
     public void setANSWER3(String ANSWER3) {
         this.ANSWER3 = ANSWER3;
     }
+
+
 
 }
 

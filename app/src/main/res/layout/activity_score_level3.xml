@@ -43,6 +43,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/calibri"
                         android:text="Beginner"
                         android:textColor="@color/colorAccent"
                         android:textStyle="bold" />

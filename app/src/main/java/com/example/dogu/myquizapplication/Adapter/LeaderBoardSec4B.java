@@ -65,6 +65,12 @@ public class LeaderBoardSec4B extends RecyclerView.Adapter<LeaderBoardSec4B.View
             //compFundaScore
             holder.getUserCompMarks().setText("" + fireUser.getValue());
         }
+        for(int i=0;i<mUsers.size();i++) {
+            if (fireUser.getKey().equals(mUsers.get(i).getDisplayName())){
+                holder.getUserScoreCount().setText("" + mUsers.get(i).getCountMuhendislik());
+
+            }
+        }
     }
 
     public void sortingScore() {
@@ -73,7 +79,7 @@ public class LeaderBoardSec4B extends RecyclerView.Adapter<LeaderBoardSec4B.View
         for(int i=0;i<mUsers.size();i++) {
             UserModel fireUser = mUsers.get(i);
             //if(fireUser.getCompMarks()>0) {
-            getNameWithScore.put(fireUser.getDisplayName(), fireUser.getFinalMarks());
+            getNameWithScore.put(fireUser.getDisplayName(), fireUser.getMuhendislikB());
             //}
         }
 
@@ -113,12 +119,14 @@ public class LeaderBoardSec4B extends RecyclerView.Adapter<LeaderBoardSec4B.View
 
         TextView mUserDisplayName;
         TextView scoreCompFunda;
+        TextView scoreCount;
         Context mContextViewHolder;
 
         public ViewHolderUsers(Context context, View itemView) {
             super(itemView);
-            mUserDisplayName = (TextView) itemView.findViewById(R.id.userName);
-            scoreCompFunda = (TextView) itemView.findViewById(R.id.score);
+            mUserDisplayName = (TextView) itemView.findViewById(R.id.userNames);
+            scoreCompFunda = (TextView) itemView.findViewById(R.id.scores);
+            scoreCount = (TextView) itemView.findViewById(R.id.txtScoreCounts);
             mContextViewHolder = context;
         }
 
@@ -134,6 +142,9 @@ public class LeaderBoardSec4B extends RecyclerView.Adapter<LeaderBoardSec4B.View
 
         public TextView getUserCompMarks() {
             return scoreCompFunda;
+        }
+        public TextView getUserScoreCount() {
+            return scoreCount;
         }
     }
 }
